@@ -15,14 +15,15 @@
     "default_title": "JSON Update Watcher",
     "default_popup": "popup.html"
   },
+  "options_page": "options.html",
   "background": {
-    "scripts": ["js/jquery-2.1.3.js", "background.js"],
+    "scripts": ["js/jquery-2.1.3.js", "storageManager.js", "background.js"],
     "persistent": true
   },
   "content_scripts": [
     {
-      "matches": ["https://github.com/Devex/front-end/pull/*", "https://github.com/Devex/grape-api/pull/*"],
-      "js": ["js/jquery-2.1.3.js", "content.js"]
+      "matches": ["https://github.com/Devex/front-end/pull/*"],
+      "js": ["js/jquery-2.1.3.js", "storageManager.js", "content.js"]
     }
   ]
 }

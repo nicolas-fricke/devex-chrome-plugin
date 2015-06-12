@@ -18,12 +18,13 @@ devexPlugin.getPullRequestKey = function() {
 };
 
 devexPlugin.addToWatchList = function() {
-  devexPlugin.watchList[devexPlugin.getPullRequestKey()] = {
+  chrome.runtime.sendMessage({type: 'watchlistAddEntry', entry: {
     repository: devexPlugin.getRepository(),
     pullRequestNumber: devexPlugin.getPullRequestNumber(),
     pullRequestName: devexPlugin.getPullRequestName()
-  };
-  chrome.storage.sync.set({watchList: devexPlugin.data}, function() { alert('successfully saved.'); });
+  }}, function(response) {
+    console.log(response.message);
+  });
 };
 
 devexPlugin.injectButton = function() {
@@ -38,13 +39,7 @@ devexPlugin.injectStatus = function() {
   $('.gh-header-actions').append("<div id='state-watching' class='state'>watching...</div>");
 };
 
-chrome.storage.sync.get('watchList', function(result) {
-  devexPlugin.watchList = result.watchList || {};
-
-  // check if this PR is on the watch list
-  if ($.inArray(devexPlugin.getPullRequestKey(), Object.keys(devexPlugin.watchList)) != -1) {
-    devexPlugin.injectStatus();
-  } else {
-    devexPlugin.injectButton();
-  }
+$(document).ready(function(){
+  // TODO: send message to background and check status – maybe in separate function?
+  devexPlugin.injectButton();
 });

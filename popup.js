@@ -4,8 +4,9 @@ $(document).on('settingsLoaded', function(){
   });
 
   $("#query-btn").click(function() {
-    $.getJSON(buildGithubApiQuery("/repos/Devex/front-end/commits", settings.githubToken)).
-        done(function(data) {
+    $.getJSON(
+        buildGithubApiQuery("/repos/Devex/front-end/commits", settings.githubToken)
+      ).done(function(data) {
           var commitHashes = [];
           $.each(data, function(index, commit) {
             commitHashes.push(commit);

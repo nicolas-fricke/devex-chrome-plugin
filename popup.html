@@ -3,6 +3,24 @@
 <script type="text/javascript" src="popup.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <div class="container">
+    <table id="watchlist">
+        <thead>
+            <tr>
+                <th>Repository</th>
+                <th>Pull Request</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="watchlist-body">
+            <tr id="pr-template-row" class="hidden">
+                <td class="repository"><a href="#" target="_blank"></a></td>
+                <td class="pr-name"><a href="#" target="_blank"></a></td>
+                <td class="status">Good question...</td>
+                <td class="actions"></td>
+            </tr>
+        </tbody>
+    </table>
     <p>
         <button id="query-btn" name="query-btn">Query</button>
     </p>
